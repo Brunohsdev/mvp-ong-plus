@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+--root{
+    --primary-color: #1C2A39; /* Azul petroleo */
+    --secondary-color: #F2F4F8; /*Cinza gelo */
+    --third-color: #D6CFC7; /* Marrom branco  */
+    --fourth-color: #B08D57; /* Ouro queimado */
+    --fifth-color: #4B1D3F; /* Vinho tinto */
+    --third-color: #f0f0f0; /* Light Gray */
+    --text-color: #333; /* Dark Gray */
+    --font-family: 'Lora', serif;
+    --font-size: 16px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
