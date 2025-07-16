@@ -1,0 +1,9 @@
+/* explorar.component.css */
+.card {
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}

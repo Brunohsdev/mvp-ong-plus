@@ -1,0 +1,35 @@
+<!-- explorar.component.html -->
+<app-header></app-header>
+
+<main class="container py-4">
+  <h1 class="text-center mb-4">Conheça as ONGs e suas campanhas</h1>
+
+  <!-- Campo de busca -->
+  <input type="text" [(ngModel)]="termoBusca" class="form-control mb-3" placeholder="Buscar por ONG ou campanha...">
+
+  <!-- Filtro por categoria -->
+  <select [(ngModel)]="categoriaSelecionada" class="form-select mb-4">
+    <option value="">Todas as causas</option>
+    <option value="saude">Saúde</option>
+    <option value="educacao">Educação</option>
+    <option value="meio ambiente">Meio ambiente</option>
+    <!-- adicione outras -->
+  </select>
+
+  <!-- Lista de campanhas -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div *ngFor="let campanha of campanhasFiltradas()" class="col">
+      <div class="card h-100 shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ campanha.titulo }}</h5>
+          <p class="card-text">{{ campanha.descricao }}</p>
+          <p><strong>ONG:</strong> {{ campanha.ong }}</p>
+          <p><strong>Causa:</strong> {{ campanha.categoria }}</p>
+        </div>
+        <div class="card-footer text-end">
+          <button class="btn btn-primary" (click)="redirecionarParaLogin()">Quero Doar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
