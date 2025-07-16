@@ -6,16 +6,18 @@ import { OngDashboard } from './pages/ong-dashboard/ong-dashboard';
 import { Doacoes } from './pages/doacoes/doacoes';
 import { PublicPages } from './pages/public-pages/public-pages';
 import { Perfil } from './pages/perfil/perfil';
-import { Cadastrar } from './pages/cadastrar/cadastrar';
+// import { Cadastrar } from './pages/cadastrar/cadastrar';
+// import { CadastrarOngs } from './pages/cadastrar-ongs/cadastrar-ongs';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'login', component: Login },
-  { path: 'home', component: Home },
-  { path: 'ong', component: OngDashboard },
+  { path: 'login', component: Login},
+  { path: 'home', component: Home},
+  { path: 'ong', component: OngDashboard},
   {path: 'perfil', component: Perfil},
-  {path: 'quem-somos', component: QuemSomos },
-  {path: 'cadastrar', component: Cadastrar },
+  {path: 'quem-somos', component: QuemSomos},
+  // {path: 'cadastrar', component: Cadastrar},
   { path: 'doacoes', component: Doacoes },
-  { path: 'explorar', component: PublicPages },
+  { path: 'explorar', component: PublicPages},
+  // {path: 'cadastrar-ongs', component: CadastrarOngs}
 ];

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import {MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatSelectModule,
     MatSlideToggleModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule, 
+    RouterModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './login.html',

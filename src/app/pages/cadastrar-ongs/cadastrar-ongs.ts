@@ -1,20 +1,29 @@
 // import { Component } from '@angular/core';
 // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { ApiService } from '../../services/api.service';
+// import { ApiService } from '../../services/api.service.js';
 // import { Router } from '@angular/router';
-// import { cpfValidator } from '../../validators/custom-validators';
-// import { applyCpfMask } from '../../utils/mask';
+// import { cnpjValidator } from '../../validators/custom-validators.ts';
+// import { applyCnpjMask } from '../../utils/masks';
 
 // @Component({
-//   selector: 'app-cadastrar',
-//   templateUrl: './cadastrar.html',
-//   styleUrls: ['./cadastrar.css']
+//   selector: 'app-cadastrar-ongs',
+//   templateUrl: './cadastrar-ongs.html',
+//   styleUrls: ['./cadastrar-ongs.css']
 // })
-// export class Cadastrar {
+// export class CadastrarOngs {
 //   cadastroForm: FormGroup;
 //   loading = false;
 //   submitted = false;
 //   error = '';
+//   areasAtuacao = [
+//     'Educação',
+//     'Saúde',
+//     'Meio Ambiente',
+//     'Direitos Humanos',
+//     'Animais',
+//     'Cultura',
+//     'Assistência Social'
+//   ];
 
 //   constructor(
 //     private formBuilder: FormBuilder,
@@ -22,13 +31,15 @@
 //     private router: Router
 //   ) {
 //     this.cadastroForm = this.formBuilder.group({
-//       tipo: ['doador'],
-//       nome: ['', [Validators.required, Validators.minLength(3)]],
+//       tipo: ['ong'],
+//       razaoSocial: ['', [Validators.required, Validators.minLength(3)]],
+//       nomeFantasia: ['', [Validators.required]],
+//       cnpj: ['', [Validators.required, cnpjValidator()]],
 //       email: ['', [Validators.required, Validators.email]],
-//       cpf: ['', [Validators.required, cpfValidator()]],
+//       telefone: ['', Validators.required],
+//       responsavel: ['', Validators.required],
 //       senha: ['', [Validators.required, Validators.minLength(6)]],
 //       confirmarSenha: ['', Validators.required],
-//       telefone: ['', Validators.required],
 //       endereco: this.formBuilder.group({
 //         cep: ['', Validators.required],
 //         logradouro: ['', Validators.required],
@@ -38,6 +49,8 @@
 //         cidade: ['', Validators.required],
 //         estado: ['', Validators.required]
 //       }),
+//       descricao: ['', Validators.required],
+//       areasAtuacao: [[], [Validators.required, Validators.minLength(1)]],
 //       aceiteTermos: [false, Validators.requiredTrue]
 //     }, {
 //       validator: this.mustMatch('senha', 'confirmarSenha')
@@ -61,9 +74,26 @@
 //     };
 //   }
 
-//   formatarCpf(event: any) {
-//     const cpf = event.target.value;
-//     event.target.value = applyCpfMask(cpf);
+//   formatarCnpj(event: any) {
+//     const cnpj = event.target.value;
+//     event.target.value = applyCnpjMask(cnpj);
+//   }
+
+//   onAreaChange(event: any, area: string) {
+//     const areas: string[] = this.cadastroForm.get('areasAtuacao')?.value || [];
+    
+//     if (event.target.checked) {
+//       if (!areas.includes(area)) {
+//         areas.push(area);
+//       }
+//     } else {
+//       const index = areas.indexOf(area);
+//       if (index >= 0) {
+//         areas.splice(index, 1);
+//       }
+//     }
+    
+//     this.cadastroForm.get('areasAtuacao')?.setValue(areas);
 //   }
 
 //   get f() { return this.cadastroForm.controls; }
@@ -76,13 +106,13 @@
 //     }
 
 //     this.loading = true;
-//     this.apiService.cadastrarUsuario(this.cadastroForm.value)
+//     this.apiService.cadastrarOng(this.cadastroForm.value)
 //       .subscribe({
 //         next: () => {
 //           this.router.navigate(['/login']);
 //         },
 //         error: (error) => {
-//           this.error = error.message || 'Erro ao cadastrar';
+//           this.error = error.message || 'Erro ao cadastrar ONG';
 //           this.loading = false;
 //         }
 //       });
