@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Header } from '../../components/header/header';
- 
 
 @Component({
-  selector: 'app-ong-dashboard',
+  selector: 'app-quem-somos',
   imports: [Header],
-  templateUrl: './ong-dashboard.html',
-  styleUrl: './ong-dashboard.css'
+  templateUrl: './quem-somos.html',
+  styleUrl: './quem-somos.css'
 })
-export class OngDashboard {
+export class QuemSomos {
 
 }

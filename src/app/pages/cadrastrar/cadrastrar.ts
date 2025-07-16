@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Header } from '../../components/header/header';
- 
 
 @Component({
-  selector: 'app-ong-dashboard',
+  selector: 'app-cadrastrar',
   imports: [Header],
-  templateUrl: './ong-dashboard.html',
-  styleUrl: './ong-dashboard.css'
+  templateUrl: './cadrastrar.html',
+  styleUrl: './cadrastrar.css'
 })
-export class OngDashboard {
+export class Cadrastrar {
 
 }
