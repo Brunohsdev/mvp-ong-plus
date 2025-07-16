@@ -1,11 +1,11 @@
-// explorar.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { Header } from '../../components/header/header';
 import { Footer } from '../../components/footer/footer';
+import { CampanhaService } from '../../services/campanha.service';
+import { Campanha } from '../../models/campanha-model';
 
 @Component({
   selector: 'app-public-pages',
@@ -20,27 +20,21 @@ import { Footer } from '../../components/footer/footer';
     RouterModule
   ],
 })
-export class PublicPages {
+export class PublicPages implements OnInit {
   termoBusca: string = '';
   categoriaSelecionada: string = '';
+  campanhas: Campanha[] = [];
 
-  campanhas = [
-    {
-      titulo: 'Doe sangue, salve vidas',
-      descricao: 'Campanha de doação de sangue para hospitais da região.',
-      ong: 'Vida+, Saúde',
-      categoria: 'saude',
-    },
-    {
-      titulo: 'Educação para Todos',
-      descricao: 'Ajude a fornecer material escolar para crianças carentes.',
-      ong: 'Educar ONG',
-      categoria: 'educacao',
-    },
-    // ... outros dados simulados
-  ];
+  constructor(private router: Router, private campanhaService: CampanhaService) {}
 
-  campanhasFiltradas() {
+  ngOnInit(): void {
+    this.campanhaService.getCampanhas().subscribe({
+      next: (res) => this.campanhas = res.campanhas,
+      error: (err) => console.error('Erro ao carregar campanhas', err)
+    });
+  }
+
+  campanhasFiltradas(): Campanha[] {
     return this.campanhas.filter((c) => {
       const nome = c.titulo.toLowerCase();
       const ong = c.ong.toLowerCase();
@@ -57,6 +51,4 @@ export class PublicPages {
   redirecionarParaLogin() {
     this.router.navigate(['/login']);
   }
-
-  constructor(private router: Router) {}
 }
