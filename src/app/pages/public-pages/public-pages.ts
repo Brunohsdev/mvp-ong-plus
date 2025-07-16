@@ -5,13 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { Header } from '../../components/header/header';
+import { Footer } from '../../components/footer/footer';
 
 @Component({
   selector: 'app-public-pages',
   standalone: true,
   templateUrl: './public-pages.html',
   styleUrls: ['./public-pages.css'],
-  imports: [Header,
+  imports: [
+    Header,
+    Footer,
     FormsModule,
     CommonModule,
     RouterModule
