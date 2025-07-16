@@ -1,18 +1,42 @@
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header bg-primary text-white">
-            <h4>Cadastro de Doador</h4>
-          </div>
-          <div class="card-body">
-            <form >
-                <!-- [formGroup]="cadastroForm" (ngSubmit)="onSubmit()" -->
-              <!-- Mantenha o mesmo conteúdo do template anterior para cadastro-doador -->
-              <!-- ... -->
-            </form>
-          </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Cadastro de Doador</h4>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+            <!-- Campos do formulário aqui -->
+            <div class="mb-3">
+              <label class="form-label">CPF</label>
+              <input type="text" class="form-control" formControlName="cpf"
+                     (input)="formatarCpf($event)"
+                     [class.is-invalid]="submitted && cadastroForm.get('cpf')?.errors">
+              @if (submitted && cadastroForm.get('cpf')?.errors) {
+                <div class="invalid-feedback">
+                  @if (cadastroForm.get('cpf')?.errors?.['required']) {
+                    <div>CPF é obrigatório</div>
+                  }
+                  @if (cadastroForm.get('cpf')?.errors?.['cpfInvalido']) {
+                    <div>CPF inválido</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Adicione outros campos seguindo o mesmo padrão -->
+
+            <button type="submit" class="btn btn-primary w-100 py-2 mt-3">
+              @if (loading) {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+              }
+              Cadastrar
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>

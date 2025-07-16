@@ -13,12 +13,12 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-login',
   imports: [
-    MatFormFieldModule, 
-    MatInputModule, 
+    MatFormFieldModule,
+    MatInputModule,
     MatSelectModule,
     MatSlideToggleModule,
     MatButtonModule,
-    MatIconModule, 
+    MatIconModule,
     RouterModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

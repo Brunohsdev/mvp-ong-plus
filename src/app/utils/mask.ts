@@ -1,20 +1,24 @@
+// Máscara para CPF (000.000.000-00)
 export function applyCpfMask(value: string): string {
-    if (!value) return '';
-    
-    // Remove todos os caracteres não numéricos
-    const numbers = value.replace(/\D/g, '');
-    
-    // Limita a 11 caracteres (tamanho do CPF)
-    const limited = numbers.slice(0, 11);
-    
-    // Aplica a máscara conforme o tamanho
-    if (limited.length <= 3) {
-      return limited;
-    } else if (limited.length <= 6) {
-      return `${limited.slice(0, 3)}.${limited.slice(3)}`;
-    } else if (limited.length <= 9) {
-      return `${limited.slice(0, 3)}.${limited.slice(3, 6)}.${limited.slice(6)}`;
-    } else {
-      return `${limited.slice(0, 3)}.${limited.slice(3, 6)}.${limited.slice(6, 9)}-${limited.slice(9, 11)}`;
-    }
-  }
+  if (!value) return '';
+  const nums = value.replace(/\D/g, '').slice(0, 11);
+
+  if (nums.length <= 3) return nums;
+  if (nums.length <= 6) return `${nums.slice(0, 3)}.${nums.slice(3)}`;
+  if (nums.length <= 9) return `${nums.slice(0, 3)}.${nums.slice(3, 6)}.${nums.slice(6)}`;
+
+  return `${nums.slice(0, 3)}.${nums.slice(3, 6)}.${nums.slice(6, 9)}-${nums.slice(9, 11)}`;
+}
+
+// Máscara para CNPJ (00.000.000/0000-00)
+export function applyCnpjMask(value: string): string {
+  if (!value) return '';
+  const nums = value.replace(/\D/g, '').slice(0, 14);
+
+  if (nums.length <= 2) return nums;
+  if (nums.length <= 5) return `${nums.slice(0, 2)}.${nums.slice(2)}`;
+  if (nums.length <= 8) return `${nums.slice(0, 2)}.${nums.slice(2, 5)}.${nums.slice(5)}`;
+  if (nums.length <= 12) return `${nums.slice(0, 2)}.${nums.slice(2, 5)}.${nums.slice(5, 8)}/${nums.slice(8)}`;
+
+  return `${nums.slice(0, 2)}.${nums.slice(2, 5)}.${nums.slice(5, 8)}/${nums.slice(8, 12)}-${nums.slice(12, 14)}`;
+}
